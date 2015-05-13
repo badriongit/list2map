@@ -50,18 +50,27 @@ public class List2Map {
 		
 		for(ResponseObj obj : list1){
 			String[] values = new String[2];
-			values[0] = obj.getTarget();
-			map.put(obj.getQuarter(), values);
+			String quarter = obj.getQuarter();
+			String target = obj.getTarget();
+			String actual = obj.getActual();
+			values[0] = target;
+			values[1] = actual;
+			map.put(quarter, values);
 		}
 		
         for(ResponseObj obj : list2){
         	String[] values1 = new String[2];
-        	if(map.containsKey(obj.getQuarter())){
-				String[] valList = map.get(obj.getQuarter());
-				valList[1] = obj.getActual();
-				map.put(obj.getQuarter(), valList);
+        	String quarter = obj.getQuarter();
+			String target = obj.getTarget();
+			String actual = obj.getActual();
+        	if(map.containsKey(quarter)){
+				String[] valList = map.get(quarter);
+			//	valList[0] = target;
+				valList[1] = actual;
+				map.put(quarter, valList);
 			} else {
-				values1[1] = obj.getActual();
+				values1[0] = target;
+				values1[1] = actual;
 				map.put(obj.getQuarter(), values1);	
 			}
 			
